@@ -120,7 +120,7 @@ int main() {
     root = insert(root, 40);
     root = insert(root, 50);
 
-    printf("In-order traversal of AVL tree: ");
+    printf("AVL TREE: ");
     inOrder(root);
     printf("\n");
 
