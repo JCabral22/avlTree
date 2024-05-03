@@ -9,7 +9,7 @@ typedef struct AVLNode {
 } AVLNode;
 
 AVLNode* newNode(int key);
-int getHeight(AVLNode* node);vis how
+int getHeight(AVLNode* node);
 void updateHeight(AVLNode* node);
 AVLNode* leftRotate(AVLNode* x);
 AVLNode* rightRotate(AVLNode* y);
@@ -79,24 +79,29 @@ AVLNode* insert(AVLNode* root, int key) {
 
     int balance = getBalance(root);
 
-    if (balance > 1 && key < root->left->key)
-        return rightRotate(root);
-
-    if (balance < -1 && key > root->right->key)
-        return leftRotate(root);
-
-    if (balance > 1 && key > root->left->key) {
-        root->left = leftRotate(root->left);
-        return rightRotate(root);
+    switch (balance) {
+        case 2:
+            if (key < root->left->key)
+                return rightRotate(root);
+            else {
+                root->left = leftRotate(root->left);
+                return rightRotate(root);
+            }
+            break;
+        case -2:
+            if (key > root->right->key)
+                return leftRotate(root);
+            else {
+                root->right = rightRotate(root->right);
+                return leftRotate(root);
+            }
+            break;
+        default:
+            return root;
+            break;
     }
-
-    if (balance < -1 && key < root->right->key) {
-        root->right = rightRotate(root->right);
-        return leftRotate(root);
-    }
-
-    return root;
 }
+
 
 void inOrder(AVLNode* root) {
     if (root != NULL) {
