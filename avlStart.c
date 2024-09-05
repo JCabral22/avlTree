@@ -147,6 +147,6 @@ int main() {
     printf("AVL TREE: ");
     inOrder(root);
     printf("\n");
-
+    freeTree(root);
     return 0;
 }
