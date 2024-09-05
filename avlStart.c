@@ -127,6 +127,14 @@ void postOrder(AVLNode* root) {
     }
 }
 
+void freeTree(AVLNode* root) {
+    if (root != NULL) {
+        freeTree(root->left);
+        freeTree(root->right);
+        free(root);
+    }
+}
+
 int main() {
     AVLNode* root = NULL;
 
