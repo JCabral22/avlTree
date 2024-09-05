@@ -111,6 +111,22 @@ void inOrder(AVLNode* root) {
     }
 }
 
+void preOrder(AVLNode* root) {
+    if (root != NULL) {
+        printf("%d ", root->key);  
+        preOrder(root->left);      
+        preOrder(root->right);     
+    }
+}
+
+void postOrder(AVLNode* root) {
+    if (root != NULL) {
+        postOrder(root->left);     
+        postOrder(root->right);    
+        printf("%d ", root->key);  
+    }
+}
+
 int main() {
     AVLNode* root = NULL;
 
